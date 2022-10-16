@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gun Violence Analysis USA 2017</title>
+    <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<body>
+    <style>
+        .header {
+            font-size: 60px;
+            text-align: center;
+            background-color: #f2f2f2;
+            padding: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .subheader {
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+            bottom: 100px;
+        }
+
+        .text {
+            width: 35%;
+            text-align: justify;
+        }
+        
+    </style>
+
+
+
+    <section class="container" style="background-color: lightgray">
+        <div class="row">
+            <h1 class="header fw-bold">Analyzing Gun Violence in US 2017</h1>
+        </div>
+
+        <div class="row state_row" style="margin-top:100px">
+            <div id="US_incident_map" class="col-sm-12 col-md-6 col-lg-6" style="margin-left: 40px;"></div>
+            <div class="col-sm-12 col-md-6 col-lg-6 text" style="margin-left: 110px;">
+                <h2 class="subheader fw-bold">How Dangerous is Gun Violence in each State of the US?</h2>
+                <p>First let's analyze <strong>gun violence</strong> by <strong>state</strong> that is happening in USA
+                    in the
+                    year 2017. The map visualization on the left shows normalized data. The Injury-Death rate is
+                    calculated by
+                    adding up the <span style="color: orange; font-weight: bold;">injuries</span> and <span
+                        style="color: #B33F40; font-weight: bold;">deaths</span> that happened and divided by the total
+                    <span style="color: purple; font-weight:bold;">incidents</span> of a particular state. As we can see
+                    from the
+                    chloropeth map, Arizona has the highest injury-death rate of 1. That means for every gun incident
+                    that
+                    happened there will be an injury or death to take place. This makes Arizona the most dangerous state
+                    in US
+                    in 2017 followed by Alabama, Nevada, Texas and South Dakota as the least dangerous state in US.
+                    <br><br>Exploring the map filters the raw total count for each tragedy type (e.g. total incident,
+                    total
+                    injured, total killed) in the bar chart below. Here we observe deeper that the total incident count
+                    alone
+                    does not contribute to <span style="font-weight: bold;">Injury-Death rate</span>. For example,
+                    selecting
+                    both states California and Arizona we clearly see the incident count for California is much higher
+                    than
+                    Arizona but because the death or injury rate per incident of Arizona is higher, hence gun violence
+                    in
+                    Arizona is more dangerous.
+                </p>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 100px;"><hr></div>
+
+        <div class="row month_row1" style="margin-top: 100px; margin-bottom: 100px; margin-left: 35px;">
+            <div id="US_month_incident" class="col-sm-12 col-md-12 col-lg"></div>
+        </div>
+
+        <div class="row month_row2">
+            <div class="col-sm-12 col-md-6 col-lg-6 text" style="margin-left: 80px; margin-top: 40px;">
+                <h2 class="subheader fw-bold">How Dangerous is Gun Violence in each month of the year 2017?</h2>
+                <p>Now we will analyze <strong>gun violence</strong> by the <strong>date</strong> in 2017. The
+                    multi-line graph above (Total Gun Violence Count) indicates the raw total count of gun incidents,
+                    injuries and deaths data for each and every date. We can observe that on the 1st of January, the
+                    total Gun Violence incident is the highest with 342 incidents due to New Year's day where a lot of
+                    people get drunk and unconciously leads to gun violence.
+                    <br><br>Although January has seem to have the highest incident count, we can see from the normalized
+                    single line chart on the right that the most dangerous month of the year is July, having the highest
+                    danger scale. Part of the reason is because USA Independence fall in the month of July so there was
+                    a lot of protest and riots happening which was dangerous.
+                </p>
+            </div>
+            <div id="US_month_incident_normalized" class="col-sm-12 col-md-6 col-lg-6" style="margin-left: 110px;"></div>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+
+        var spec2 = "US_gun_tragedy_per_state.vg.json";
+        var spec3 = "US_gun_tragedy_per_month.vg.json";
+        var spec4 = "US_gun_rate_per_month.vg.json";
+        vegaEmbed('#US_incident_map', spec2).then(function (result) {
+            // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+        vegaEmbed('#US_month_incident', spec3).then(function (result) {
+            // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+        vegaEmbed('#US_month_incident_normalized', spec4).then(function (result) {
+            // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+    </script>
+
+</body>
+
+</html>

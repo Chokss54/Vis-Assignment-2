@@ -1,0 +1,33 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Danger Scale of Gun Violence per Month in USA 2017",  "fontSize": 16, "offset":30, "subtitle": "Average Injury and Death count per Incident"},
+  "width": 500,
+  "height":400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/Chokss54/Gun-Violence-in-US-Visualization/main/month_data_clean.csv",
+    "format": {"parse": {"date": "utc:'%e/%m/%Y'"}}
+  },
+  "layer": [
+    {
+      "mark": "line",
+  "encoding": {
+    "x": {"field": "date", "type": "temporal", "timeUnit": "yearmonth", "title": "Date"},
+    "y": {"field": "KDI month", "aggregate": "average", "title":"Injury-Death Rate", "scale":{"zero":false}},
+    "color": {"value": "#1f77b4"}
+  }
+    },
+    {
+      "mark": "rule",
+      "encoding": {
+        "x": {"field": "date", "aggregate": {"argmax": "KDI month"}, "type": "temporal"},
+        "size": {"value": 2}
+      }
+    },
+    {
+      "mark": {"type": "text", "text": "Most dangerous month of the year", "dx": 90, "dy": 10},
+      "encoding": {
+        "x": {"field": "date", "aggregate": {"argmax": "KDI month"}, "type": "temporal"}
+      }
+    }
+  ]
+  }

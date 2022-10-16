@@ -1,0 +1,88 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "autosize": {"resize": true},
+  "vconcat":[
+    {
+      "title": {"text": "Danger scale of Gun Violence per State in USA 2017", "fontSize": 18, "offset":30, "subtitle": "Injury and Death count per Incident"},
+      "width": 500,
+  "height": 450,
+  "projection": {"type": "albersUsa"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/Chokss54/Gun-Violence-in-US-Visualization/main/US_map1.json",
+    "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
+  },
+  "transform": [
+    {
+      "lookup": "properties.name",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/Chokss54/Gun-Violence-in-US-Visualization/main/state_data_clean.csv",
+          "format": {"type": "csv"}
+        },
+        "key": "state",
+        "fields": ["KDI state"]
+      }
+    }
+  ],
+  "mark": {"type": "geoshape",
+    "stroke": "#757575",
+    "strokeWidth": 0.5},
+    "params": [{"name": "countrySelection", "select": {"type": "point"}}],
+  "encoding": {
+    "color": {
+      "field": "KDI state",
+      "type": "quantitative",
+      "title": "Injury-Death rate",
+      "scale": {"type": "linear"
+      }
+      
+    }
+    ,
+    "tooltip": [
+      {"field": "properties.name", "type": "nominal", "title": "State"},
+      {"field": "KDI state", "type": "quantitative", "title": "Injury-Death rate"}
+    ]
+  }
+    },
+    {
+      "title":{"text": "Total Gun Violence Count by State in USA 2017", "fontSize":18, "offset":30, "subtitle": "Filter this visualization by selecting states on the map"},
+      "width": 500,
+      "data":{
+    "url": "https://raw.githubusercontent.com/Chokss54/Gun-Violence-in-US-Visualization/main/US_map1.json",
+    "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
+  },
+      "transform": [{
+        "lookup":"properties.name",
+        "from":{
+          "data": {"url": "https://raw.githubusercontent.com/Chokss54/Gun-Violence-in-US-Visualization/main/state_data_clean.csv"},
+          "key": "state",
+          "fields": ["total incident", "total injured", "total death"]
+        }
+      },
+      {"filter": {"param": "countrySelection", "empty": false}}],
+"repeat": {"layer": ["total incident", "total injured", "total death"]},
+"spec": {
+  "mark": "bar",
+  "encoding": {
+    
+    "y": {"field": "properties.name", "type": "nominal", "title":"State"},
+    "x": {
+      "aggregate": "sum",
+      "field": {"repeat": "layer"},
+      "type": "quantitative",
+      "title": "Total Count"
+    },
+    "tooltip":[
+      {"field": "properties.name", "type": "nominal", "title": "State"},
+      {"field": "total incident", "type": "quantitative", "title": "Total Incidents"},
+      {"field": "total injured", "type": "quantitative", "title": "Total Injuries"},
+      {"field": "total death", "type": "quantitative", "title": "Total Deaths"}
+    ],
+    "color": {"datum": {"repeat": "layer"}, "title": "Tragedy Type", "scale":{"domain":["total incident", "total injured", "total death"], "range":["purple", "#ff7f0e", "#d62728"]}},
+    "yOffset": {"datum": {"repeat": "layer"}}
+  }
+}
+    }
+  ],
+  "config": {"concat": {"spacing": 100}}
+}
