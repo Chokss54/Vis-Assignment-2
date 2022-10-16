@@ -1,7 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {"text":"Total Gun Violence Count by Date in USA 2017", "fontSize": 18, "offset":40},
-    "data": {"url": "https://raw.githubusercontent.com/Chokss54/Gun-Violence-in-US-Visualization/main/month_data_clean.csv",
+    "data": {"url": "https://raw.githubusercontent.com/Chokss54/Vis-Assignment-2/main/month_data_clean.csv",
     "format": {"parse": {"date": "utc:'%e/%m/%Y'"}}},
     "width": 1080,
     "height": 300,

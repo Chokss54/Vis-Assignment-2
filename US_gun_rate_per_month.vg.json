@@ -4,7 +4,7 @@
   "width": 500,
   "height":400,
   "data": {
-    "url": "https://raw.githubusercontent.com/Chokss54/Gun-Violence-in-US-Visualization/main/month_data_clean.csv",
+    "url": "https://raw.githubusercontent.com/Chokss54/Vis-Assignment-2/main/month_data_clean.csv",
     "format": {"parse": {"date": "utc:'%e/%m/%Y'"}}
   },
   "layer": [

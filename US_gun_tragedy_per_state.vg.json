@@ -8,7 +8,7 @@
   "height": 450,
   "projection": {"type": "albersUsa"},
   "data": {
-    "url": "https://raw.githubusercontent.com/Chokss54/Gun-Violence-in-US-Visualization/main/US_map1.json",
+    "url": "https://raw.githubusercontent.com/Chokss54/Vis-Assignment-2/main/US_map1.json",
     "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
   },
   "transform": [
@@ -16,7 +16,7 @@
       "lookup": "properties.name",
       "from": {
         "data": {
-          "url": "https://raw.githubusercontent.com/Chokss54/Gun-Violence-in-US-Visualization/main/state_data_clean.csv",
+          "url": "https://raw.githubusercontent.com/Chokss54/Vis-Assignment-2/main/state_data_clean.csv",
           "format": {"type": "csv"}
         },
         "key": "state",
@@ -48,13 +48,13 @@
       "title":{"text": "Total Gun Violence Count by State in USA 2017", "fontSize":18, "offset":30, "subtitle": "Filter this visualization by selecting states on the map"},
       "width": 500,
       "data":{
-    "url": "https://raw.githubusercontent.com/Chokss54/Gun-Violence-in-US-Visualization/main/US_map1.json",
+    "url": "https://raw.githubusercontent.com/Chokss54/Vis-Assignment-2/main/US_map1.json",
     "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
   },
       "transform": [{
         "lookup":"properties.name",
         "from":{
-          "data": {"url": "https://raw.githubusercontent.com/Chokss54/Gun-Violence-in-US-Visualization/main/state_data_clean.csv"},
+          "data": {"url": "https://raw.githubusercontent.com/Chokss54/Vis-Assignment-2/main/state_data_clean.csv"},
           "key": "state",
           "fields": ["total incident", "total injured", "total death"]
         }
